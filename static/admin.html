@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tambah Tugas - Admin</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f0f4f8; }
+    form { background: #fff; padding: 20px; border-radius: 8px; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .msg { margin-top: 15px; color: green; }
+  </style>
+</head>
+<body>
+  <h2>🛠️ Tambah Tugas Baru</h2>
+  <form id="add-task-form">
+    <label>Nama Tugas</label><br>
+    <input type="text" name="name" required><br>
+    <label>Link Produk (URL asli)</label><br>
+    <input type="text" name="url" required><br>
+    <button type="submit">Tambah Tugas</button>
+  </form>
+
+  <div class="msg" id="msgBox"></div>
+
+  <script>
+    const form = document.getElementById("add-task-form");
+    const msg = document.getElementById("msgBox");
+
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch("/api/add_task", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      msg.innerText = "✅ Tugas berhasil ditambahkan!\nShortlink: " + data.shortlink;
+      form.reset();
+    };
+  </script>
+</body>
+</html>

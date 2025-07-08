@@ -1,0 +1,5 @@
+BOT_TOKEN = "YOUR_BOT_TOKEN"
+TELEGRAM_API = f"https://api.telegram.org/bot{BOT_TOKEN}"
+DB_PATH = "click_data.db"
+REWARD_POIN_PER_TASK = 500
+SAFELINKU_API_KEY = "b17d37706eb45abc6fa252673c954db70154f367"
